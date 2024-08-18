@@ -60,11 +60,12 @@ public class AuctionsController : ControllerBase
 
         _context.Add(auction);
 
-        var result = await _context.SaveChangesAsync() > 0;
-
+        // These events and the database are treated as a single transaction because they use EntityFramework
         var newAuction = _mapper.Map<AuctionDto>(auction);
 
         await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction));
+
+        var result = await _context.SaveChangesAsync() > 0;
 
         if (!result) return BadRequest("Could not save changes to the DB");
 
