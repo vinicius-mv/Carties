@@ -1,7 +1,8 @@
 export default function Home() {
+  console.log("Client component");
   return (
-    <div className="text-3xl font-semibold">
-      Carsties App!
-    </div>
+    <div>
+      Content goes here!
+    </div >
   );
 }
