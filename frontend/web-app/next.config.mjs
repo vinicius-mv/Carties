@@ -4,6 +4,11 @@ const nextConfig = {
         fetches: {
             fullUrl: true
         }
+    },
+    images: {
+        remotePatterns: [
+            { protocol: 'https', hostname: 'cdn.pixabay.com' }
+        ]
     }
 };
 
