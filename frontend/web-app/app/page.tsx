@@ -1,8 +1,10 @@
+import Listings from "./auctions/Listings";
+
 export default function Home() {
   console.log("Client component");
   return (
     <div>
-      Content goes here!
+      <Listings />
     </div >
   );
 }
