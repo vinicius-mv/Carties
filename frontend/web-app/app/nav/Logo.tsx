@@ -1,11 +1,11 @@
 'use client'
 
-import { useParamStore } from '@/hooks/useParamsStore'
+import { useParamsStore } from '@/hooks/useParamsStore'
 import React from 'react'
 import { AiOutlineCar } from 'react-icons/ai'
 
 export default function Logo() {
-    const reset = useParamStore(state => state.reset);
+    const reset = useParamsStore(state => state.reset);
 
     return (
         <div onClick={reset}

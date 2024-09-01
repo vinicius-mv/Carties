@@ -1,6 +1,6 @@
 'use client'
 
-import { useParamStore as useParamsStore } from '@/hooks/useParamsStore'
+import { useParamsStore as useParamsStore } from '@/hooks/useParamsStore'
 import React, { useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 
