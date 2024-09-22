@@ -3,7 +3,7 @@ using MongoDB.Entities;
 
 namespace BiddingService.Models;
 
-public class AuctionEntity : Entity
+public class Auction : Entity
 {
     public DateTime AuctionEnd { get; set; }
     public string Seller { get; set; }
