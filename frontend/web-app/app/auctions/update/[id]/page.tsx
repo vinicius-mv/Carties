@@ -1,7 +1,15 @@
+import { getDetailedViewData } from '@/app/actions/auctionActions'
+import AuctionForm from '@/app/actions/AuctionForm'
+import Heading from '@/app/components/Heading'
 import React from 'react'
 
-export default function Update({params}: {params:{id: string}}) {
+export default async function Update({ params }: { params: { id: string } }) {
+  const data = await getDetailedViewData(params.id);
   return (
-    <div>Update for {params.id}</div>
+    <div className='mx-auto max-w-[75%] shadow-lg p-10 bg-white rounded-lg'>
+      <Heading title='Update your auction' subtitle='Please update the details of your car' />
+      <AuctionForm auction={data} />
+      Update for {params.id}
+    </div>
   )
 }
