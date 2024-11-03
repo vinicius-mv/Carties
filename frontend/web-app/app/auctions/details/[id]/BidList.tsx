@@ -17,7 +17,7 @@ type Props = {
     auction: Auction;
 }
 
-function BidList({ auction }: Props) {
+function BidList({ auction, user }: Props) {
     const [loading, setLoading] = useState<boolean>(true);
     const bids = useBidStore(state => state.bids);
     const setBids = useBidStore(state => state.setBids);
@@ -60,8 +60,19 @@ function BidList({ auction }: Props) {
                 )}
             </div>
 
-            <div className='px-2 pb-2 text-gray-100'>
-                <BidForm auctionId={auction.id} highBid={highBid} />
+            <div className='px-2 pb-2 text-gray-500'>
+                {!user ? (
+                    <div className='flex items-center justify-center p-2 text-lg font-semibold'>
+                        Please login to make a bid
+                    </div>
+                ) : user.username === auction.seller ? (
+                    <div className='flex items-center justify-center p-2 text-lg font-semibold'>
+                        You cannot bid on your own auction
+                    </div>
+                ) : (
+                    <BidForm auctionId={auction.id} highBid={highBid} />
+                )}
+
             </div>
 
         </div>
