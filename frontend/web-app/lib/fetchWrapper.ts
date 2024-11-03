@@ -10,7 +10,7 @@ async function get(url: string) {
 
     const response = await fetch(baseUrl + url, requestOptions);
 
-    return handleRequest(response);
+    return handleResponse(response);
 }
 
 async function post(url: string, body: {}) {
@@ -22,7 +22,7 @@ async function post(url: string, body: {}) {
 
     const response = await fetch(baseUrl + url, requestOptions);
 
-    return handleRequest(response);
+    return handleResponse(response);
 }
 
 async function put(url: string, body: {}) {
@@ -33,7 +33,7 @@ async function put(url: string, body: {}) {
     }
     const response = await fetch(baseUrl + url, requestOptions);
 
-    return handleRequest(response);
+    return handleResponse(response);
 }
 
 async function del(url: string) {
@@ -43,7 +43,7 @@ async function del(url: string) {
     }
     const response = await fetch(baseUrl + url, requestOptions);
 
-    return handleRequest(response);
+    return handleResponse(response);
 }
 
 async function getHeaders() {
@@ -57,9 +57,15 @@ async function getHeaders() {
     return headers;
 }
 
-async function handleRequest(response: Response) {
+async function handleResponse(response: Response) {
     const text = await response.text();
-    const data = text && JSON.parse(text);
+
+    let data = "";
+    try {
+        data = JSON.parse(text);
+    } catch (err) {
+        data = text;
+    }
 
     if (response.ok) {
         return data || response.statusText;
