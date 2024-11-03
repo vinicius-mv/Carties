@@ -72,9 +72,8 @@ async function handleResponse(response: Response) {
     } else {
         const error = {
             status: response.status,
-            message: response.statusText
+            message: typeof data === 'string' ? data : response.statusText
         }
-
         return { error };
     }
 }
