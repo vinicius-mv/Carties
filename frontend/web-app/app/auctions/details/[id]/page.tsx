@@ -1,4 +1,4 @@
-import {getBidsForAuction, getDetailedViewData} from '@/app/actions/auctionActions'
+import {getDetailedViewData} from '@/app/actions/auctionActions'
 import Heading from '@/app/components/Heading';
 import React from 'react'
 import CountdownTimer from '../../CountdownTimer';
@@ -7,12 +7,11 @@ import {getCurrentUser} from '@/app/actions/authActions';
 import DetailedSpecs from '../DetailedSpecs';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
-import BidItem from "@/app/auctions/details/[id]/BidItem";
+import BidList from "@/app/auctions/details/[id]/BidList";
 
 export default async function Details({params}: { params: { id: string } }) {
   const data = await getDetailedViewData(params.id);
   const user = await getCurrentUser();
-  const bids = await getBidsForAuction(params.id);
 
   return (
     <div>
@@ -36,13 +35,8 @@ export default async function Details({params}: { params: { id: string } }) {
         <div className='w-full bg-gray-200 relative aspect-[4/3] rounded-lg overflow-auto'>
           <CarImage imageUrl={data.imageUrl}/>
         </div>
+        <BidList user={user}  auction={data} />
 
-        <div className='border-2 rounded-lg p-2 bg-gray-100'>
-          <Heading title='Bids'/>
-          {bids.map(bid => (
-            <BidItem key={bid.id} bid={bid} />
-          ))}
-        </div>
       </div>
 
       <div className='mt-3 grid grid-cols-1 rounded-lg'>
