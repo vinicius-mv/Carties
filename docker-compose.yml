@@ -123,6 +123,23 @@ services:
       - 7004:80
     depends_on:
       - rabbitmq
+        
+  web-app:
+    image: viniciussmv/web-app
+    build:
+      context: .
+      dockerfile: frontend/web-app/Dockerfile
+    volumes:
+      - /var/lib/web/data
+    ports:
+      - "3000:3000"
+    environment:
+      - AUTH_SECRET="bJ1e5KGYesYMR8BRgDr5PtbrFYQ6nDro7fZHm+NLPuQ=" # Added by `npx auth`. Read more: https://cli.authjs.dev
+      - AUTH_URL=http://localhost:3000
+      - AUTH_URL_INTERNAL=http://web-app:3000
+      - API_URL=http://gateway-svc/
+      - ID_URL=http://localhost:5001
+      - NOTIFY_URL=http://localhost:6001/notifications
 
 
 volumes:
