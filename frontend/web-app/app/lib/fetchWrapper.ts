@@ -9,8 +9,7 @@ async function get(url: string) {
     }
 
     const response = await fetch(baseUrl + url, requestOptions);
-
-    return handleResponse(response);
+    return await handleResponse(response);
 }
 
 async function post(url: string, body: {}) {
@@ -60,7 +59,7 @@ async function getHeaders() {
 async function handleResponse(response: Response) {
     const text = await response.text();
 
-    let data = "";
+    let data;
     try {
         data = JSON.parse(text);
     } catch (err) {

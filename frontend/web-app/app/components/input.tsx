@@ -9,6 +9,7 @@ type Props = {
 } & UseControllerProps
 
 export default function input(props: Props) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
     const { fieldState, field } = useController({ ...props, defaultValue: '' })
 
     return (
