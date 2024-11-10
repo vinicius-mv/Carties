@@ -74,8 +74,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
+      - IssuerUri=http://localhost:5001
       - ConnectionStrings__DefaultConnection=Server=postgres:5432; User Id=postgres; Password=postgrespw; Database=identity
-      - IdentityServiceUrl=http://identity-svc
     ports:
       - 5001:80
     depends_on:
@@ -91,7 +91,7 @@ services:
       - ASPNETCORE_URLS=http://+:80
     ports:
       - 6001:80
-        
+
   bid-svc:
     image: viniciussmv/bid-svc:latest
     build:
@@ -109,7 +109,7 @@ services:
     depends_on:
       - mongodb
       - rabbitmq
-      
+
   notify-svc:
     image: viniciussmv/notify-svc:latest
     build:
@@ -123,7 +123,7 @@ services:
       - 7004:80
     depends_on:
       - rabbitmq
-        
+
   web-app:
     image: viniciussmv/web-app
     build:
@@ -139,8 +139,8 @@ services:
       - AUTH_URL_INTERNAL=http://web-app:3000
       - API_URL=http://gateway-svc/
       - ID_URL=http://localhost:5001
+      - ID_URL_INTERNAL=http://identity-svc
       - NOTIFY_URL=http://localhost:6001/notifications
-
 
 volumes:
   pgdata:
