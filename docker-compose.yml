@@ -74,8 +74,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-      - IssuerUri=http://id.carties.local
-      - ClientApp=http://app.carties.local
+      - IssuerUri=https://id.carties.local
+      - ClientApp=https://app.carties.local
       - ConnectionStrings__DefaultConnection=Server=postgres:5432; User Id=postgres; Password=postgrespw; Database=identity
       - VIRTUAL_HOST=id.carties.local
     depends_on:
@@ -89,7 +89,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-      - ClientApp=http://app.carties.local
+      - ClientApp=https://app.carties.local
       - VIRTUAL_HOST=api.carties.local
 
   bid-svc:
@@ -133,12 +133,12 @@ services:
       - /var/lib/web/data
     environment:
       - AUTH_SECRET="bJ1e5KGYesYMR8BRgDr5PtbrFYQ6nDro7fZHm+NLPuQ=" # Added by `npx auth`. Read more: https://cli.authjs.dev
-      - AUTH_URL=http://app.carties.local
+      - AUTH_URL=https://app.carties.local
       - AUTH_URL_INTERNAL=http://web-app:3000
       - API_URL=http://gateway-svc/
-      - ID_URL=http://id.carties.local
+      - ID_URL=https://id.carties.local
       - ID_URL_INTERNAL=http://identity-svc
-      - NOTIFY_URL=http://api.carties.local/notifications
+      - NOTIFY_URL=https://api.carties.local/notifications
       - VIRTUAL_HOST=app.carties.local
       - VIRTUAL_PORT=3000
 
@@ -146,8 +146,10 @@ services:
     image: nginxproxy/nginx-proxy
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./devcerts:/etc/nginx/certs
 
 volumes:
   pgdata:
