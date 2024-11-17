@@ -15,6 +15,7 @@ public static class DbHelper
     {
         db.Auctions.RemoveRange(db.Auctions);
         db.SaveChanges();
+        InitDbForTests(db);
     }
 
     private static List<Auction> GetAuctionsForTest()
