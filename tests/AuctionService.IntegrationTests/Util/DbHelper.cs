@@ -11,7 +11,7 @@ public static class DbHelper
         db.SaveChanges();
     }
 
-    public static void CleanDbForTests(AuctionDbContext db)
+    public static void ReinitDbForTests(AuctionDbContext db)
     {
         db.Auctions.RemoveRange(db.Auctions);
         db.SaveChanges();
