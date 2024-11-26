@@ -15,7 +15,7 @@ public class AuctionBusTests : IAsyncLifetime
 {
     private readonly CustomWebAppFactory _factory;
     private readonly HttpClient _httpClient;
-    private ITestHarness _testHarness;
+    private readonly ITestHarness _testHarness;
 
     public AuctionBusTests(CustomWebAppFactory factory)
     {
@@ -51,7 +51,7 @@ public class AuctionBusTests : IAsyncLifetime
         return Task.CompletedTask;
     }
 
-    private CreateAuctionDto GetAuctionForCreate()
+    private static CreateAuctionDto GetAuctionForCreate()
     {
         return new CreateAuctionDto
         {
