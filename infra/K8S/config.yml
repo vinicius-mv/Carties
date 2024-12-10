@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auction-svc-config
+data:
+  ASPNETCORE_URLS: http://+:80;http://+:7777
+  RabbitMq__Host: rabbit-clusterip
+  RabbitMq__Username: rabbit
+  RabbitMq__Password: rabbitpw
+  ConnectionStrings__DefaultConnection: Server=postgres-clusterip:5432; User Id=postgres; Password=postgrespw; Database=auctions
+  IdentityServiceUrl: http://identity-svc
+  Kestrel__Endpoints__Grpc__Protocols: Http2
+  Kestrel__Endpoints__Grpc__Url: http://+:7777
+  Kestrel__Endpoints__WebApi__Protocols: Http1
+  Kestrel__Endpoints__WebApi__Url: http://+:80
