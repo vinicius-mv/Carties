@@ -38,3 +38,13 @@ data:
   ConnectionStrings__BidDbConnection: mongodb://root:mongopw@mongo-clusterip
   IdentityServiceUrl: http://identity-clusterip
   GrpcAuction: http://auction-clusterip:7777
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notify-svc-config
+data:
+  ASPNETCORE_URLS: http://+:80
+  RabbitMq__Host: rabbit-clusterip
+  RabbitMq__Username: rabbit
+  RabbitMq__Password: rabbitpw
