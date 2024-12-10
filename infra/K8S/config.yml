@@ -25,3 +25,16 @@ data:
   RabbitMq__Password: rabbitpw
   ConnectionStrings__MongoDbConnection: mongodb://root:mongopw@mongo-clusterip
   AuctionServiceUrl: http://auction-clusterip
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bid-svc-config
+data:
+  ASPNETCORE_URLS: http://+:80
+  RabbitMq__Host: rabbit-clusterip
+  RabbitMq__Username: rabbit
+  RabbitMq__Password: rabbitpw
+  ConnectionStrings__BidDbConnection: mongodb://root:mongopw@mongo-clusterip
+  IdentityServiceUrl: http://identity-clusterip
+  GrpcAuction: http://auction-clusterip:7777
