@@ -48,3 +48,11 @@ data:
   RabbitMq__Host: rabbit-clusterip
   RabbitMq__Username: rabbit
   RabbitMq__Password: rabbitpw
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-svc-config
+data:
+  ClientApp: https://app.carties.local
+  IdentityServiceUrl: http://identity-clusterip
