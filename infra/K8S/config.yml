@@ -56,3 +56,13 @@ metadata:
 data:
   ClientApp: https://app.carties.local
   IdentityServiceUrl: http://identity-clusterip
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: identity-svc-config
+data:
+  ASPNETCORE_URLS: http://+:80
+  IssuerUri: http://id.carties.local
+  ClientApp: http://app.carties.local
+  ConnectionStrings__DefaultConnection: Server=postgres-clusterip; User Id=postgres; Password=postgrespw; Database=identity
