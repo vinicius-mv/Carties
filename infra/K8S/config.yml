@@ -54,6 +54,7 @@ kind: ConfigMap
 metadata:
   name: gateway-svc-config
 data:
+  ASPNETCORE_URLS: http://+:80
   ClientApp: https://app.carties.local
   IdentityServiceUrl: http://identity-clusterip
 ---
@@ -63,8 +64,8 @@ metadata:
   name: identity-svc-config
 data:
   ASPNETCORE_URLS: http://+:80
-  IssuerUri: http://id.carties.local
-  ClientApp: http://app.carties.local
+  IssuerUri: https://id.carties.local
+  ClientApp: https://app.carties.local
   ConnectionStrings__DefaultConnection: Server=postgres-clusterip; User Id=postgres; Password=postgrespw; Database=identity
 ---
 apiVersion: v1
@@ -73,9 +74,9 @@ metadata:
   name: webapp-svc-config
 data:
   AUTH_SECRET: "bJ1e5KGYesYMR8BRgDr5PtbrFYQ6nDro7fZHm+NLPuQ="
-  AUTH_URL: http://app.carties.local
+  AUTH_URL: https://app.carties.local
   AUTH_URL_INTERNAL: http://webapp-clusterip:3000
   API_URL: http://gateway-clusterip/
-  ID_URL: http://id.carties.local
+  ID_URL: https://id.carties.local
   ID_URL_INTERNAL: http://identity-clusterip
-  NOTIFY_URL: http://api.carties.local/notifications
+  NOTIFY_URL: https://api.carties.local/notifications
