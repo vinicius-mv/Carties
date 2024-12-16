@@ -66,3 +66,16 @@ data:
   IssuerUri: http://id.carties.local
   ClientApp: http://app.carties.local
   ConnectionStrings__DefaultConnection: Server=postgres-clusterip; User Id=postgres; Password=postgrespw; Database=identity
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-svc-config
+data:
+  AUTH_SECRET: "bJ1e5KGYesYMR8BRgDr5PtbrFYQ6nDro7fZHm+NLPuQ="
+  AUTH_URL: http://app.carties.local
+  AUTH_URL_INTERNAL: http://webapp-clusterip:3000
+  API_URL: http://gateway-clusterip/
+  ID_URL: http://id.carties.local
+  ID_URL_INTERNAL: http://identity-clusterip
+  NOTIFY_URL: http://api.carties.local/notifications
